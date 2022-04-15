@@ -1,0 +1,40 @@
+//chess is an 8/8 board - theoretically i can have a 64 byte representation of the board with 1 byte per square
+
+  Empty = 00
+
+  White
+    Pawn = p
+    Knight = n
+    Bishop = b
+    Rook = r
+    Queen = q
+    King = k
+  Black 
+    Pawn = P
+    Knight = N
+    Bishop = B
+    Rook = R
+    Queen = Q
+    King = K
+  
+  The opening board state would then be expressed in this array, where board["a -h"][1-8] is converted to chess notation
+  
+  a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7
+  1 = 7, 2 = 6, 3 = 5, 4 = 4, 5 = 3, 6 = 2, 7 = 1, 8 = 0
+
+  char board[8][8] = {
+                      {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'} 
+                      {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'}
+                      {'.', '.', '.', '.', '.', '.', '.', '.'}
+                      {'.', '.', '.', '.', '.', '.', '.', '.'}
+                      {'.', '.', '.', '.', '.', '.', '.', '.'}
+                      {'.', '.', '.', '.', '.', '.', '.', '.'}
+                      {'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'}
+                      {'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'}
+                     }
+  board[a][4] is board[0][4] which returns a 0
+
+  Create "objects" of different classes
+    class piece
+      sub-class Pawn
+      sub class
