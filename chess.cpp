@@ -1,27 +1,7 @@
 #include <iostream>
+#include <vector>
+#include "chess.h"
 using namespace std;
-
-class chess_board{
-  public:
-
-    chess_board White_Move(char, char, int);
-
-
-
-  
-    void set_board();
-    void first_move();
-    void print();
-
-    // The class keeps the board publically accessible
-    char board[8][8];
-  private:
-    int 
-      turn_num,
-      turn_color,
-      draw_timer;
-    
-};
 
 // Print the current board state
 void chess_board::print()
@@ -35,7 +15,6 @@ void chess_board::print()
 }
 
 // Here we update a chess board with the default state:
-
 void chess_board::set_board()
 {
     // Chess Notation Row 8
@@ -122,30 +101,151 @@ void chess_board::set_board()
   turn_color = 0;
   draw_timer = 0;
 }
-
-
-
-
+// Update turn counter, save turn info to "chess_moves"
+void chess_board::take_turn()
+{
+  if (turn_color == 0)
+  {
+    turn_color = 1;
+  } else if (turn_color == 1)
+  {
+    turn_color = 0;
+    ++turn_num;
+  }
+}
+// Just a sample function that plays E4 on the given board
 void chess_board::first_move()
 {
   board[3][3] = 'P';
   board[1][3] = '.';
   
+  take_turn();
 }
-/*
-chess_board White_Move(char piece, char x, int y, chess_board &board)
+
+int chess_board::x_convert(char x)
 {
-  while (!(x == 'p' || x == 'n' || x == 'b' || x == 'r'|| x == 'q' || x == 'k'))
+  int x_fixed;
+   //transform x into usable int
+    switch (x)
+    {
+      case 'a' : 
+      case 'A' : x_fixed = 0;
+        break;
+      case 'b' : 
+      case 'B' : x_fixed = 1;
+        break;
+      case 'c' : 
+      case 'C' : x_fixed = 2;
+        break;
+      case 'd' : 
+      case 'D' : x_fixed = 3;
+        break;
+      case 'e' : 
+      case 'E' : x_fixed = 4;
+        break;
+      case 'f' : 
+      case 'F' : x_fixed = 5;
+        break;
+      case 'g' : 
+      case 'G' : x_fixed = 6;
+        break;
+      case 'h' : 
+      case 'H' : x_fixed = 7;
+        break;
+      default : x_fixed = -10;
+    }
+    return x_fixed;
+}
+int chess_board::y_convert(int y)
+{
+  int y_fixed;
+    //transform y into usable int j
+    switch (y)
+    {  
+      case 1: y_fixed = 7;
+        break;
+      case 2: y_fixed = 6;
+        break;
+      case 3: y_fixed = 5;
+        break;
+      case 4: y_fixed = 4;
+        break;
+      case 5: y_fixed = 3;
+        break;
+      case 6: y_fixed = 2;
+        break;
+      case 7: y_fixed = 1;
+        break;
+      case 8: y_fixed = 0;
+        break;
+      default: y_fixed = -10;
+    }
+  return y_fixed;
+}
+
+//This doesn't really work, come back to it. 
+
+void chess_board::Black_Move(char piece, char x, int y)
+{
+  int i, j;
+  if (turn_color == 1)
   {
-    cout << "Invalid piece, please enter a valid piece";
-    cin >> piece >> x >> y;
+    while (!(piece == 'p' || piece == 'n' || piece == 'b' || piece == 'r'|| piece == 'q' || piece == 'k'))
+    {
+      cout << "Invalid piece, please enter a valid piece";
+      cin >> piece >> x >> y;
+    }
+    
+    // Convert input from Chess Notation into "array notation"
+    i = x_convert(x);
+    j = y_convert(y);
+   
+    if (i != -10 && j != -10) 
+    {
+      board[j][i] = piece;
+    }
+    /*
+    Add a function to detect the old position, remove the piece from it.
+    Add a second function to detect if a capture happened, keep track of captured pieces.
+    */
+   take_turn();
+
+  // if (piece == board[][])
   }
-  // Check if piece can be moved. Inpuit is the "target" placement, so check for valid origins per piece type
-  // First make a function that can move the e2 pawn to e4
-
-
-  if (piece == board[])
+  else 
+  {
+    cout << "Something went wrong, it's not your turn!";
+  }
 
 }
 
-*/
+void chess_board::White_Move(char piece, char x, int y)
+{
+  int i, j;
+  if (turn_color == 0)
+  {
+    while (!(piece == 'P' || piece == 'N' || piece == 'B' || piece == 'R'|| piece == 'Q' || piece == 'K'))
+    {
+      cout << "Invalid piece, please enter a valid piece";
+      cin >> piece >> x >> y;
+    }
+  
+    i = x_convert(x);
+    j = y_convert(y);
+   
+    if (i != -10 && j != -10) 
+    {
+      board[j][i] = piece;
+    }
+    /*
+    Add a function to detect the old position, remove the piece from it.
+    Add a second function to detect if a capture happened, keep track of captured pieces.
+    */
+   take_turn();
+  // if (piece == board[][])
+  }
+  else 
+  {
+    cout << "Something went wrong, it's not your turn!";
+  }
+}
