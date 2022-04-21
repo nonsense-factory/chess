@@ -39,4 +39,5 @@ class chess_board{
     void take_turn();
     int x_convert(char);
     int y_convert(int);    
+    bool valid_move(char, char, int);
 };

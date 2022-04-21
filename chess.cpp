@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "chess.h"
+#include "chess_header.h"
 using namespace std;
 
 // Print the current board state
@@ -221,6 +221,7 @@ void chess_board::Black_Move(char piece, char x, int y)
 
 void chess_board::White_Move(char piece, char x, int y)
 {
+  bool valid;
   int i, j;
   if (turn_color == 0)
   {
@@ -233,14 +234,14 @@ void chess_board::White_Move(char piece, char x, int y)
     i = x_convert(x);
     j = y_convert(y);
    
-    if (i != -10 && j != -10) 
+   valid = valid_move(piece, x, y);
+   
+    if (i != -10 && j != -10 && valid == true) 
     {
       board[j][i] = piece;
+
     }
-    /*
-    Add a function to detect the old position, remove the piece from it.
-    Add a second function to detect if a capture happened, keep track of captured pieces.
-    */
+
    take_turn();
   // if (piece == board[][])
   }
@@ -248,4 +249,9 @@ void chess_board::White_Move(char piece, char x, int y)
   {
     cout << "Something went wrong, it's not your turn!";
   }
+}
+
+bool valid_move(char piece, char column, int row)
+{
+
 }
