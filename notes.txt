@@ -38,3 +38,56 @@
     class piece
       sub-class Pawn
       sub class
+
+
+
+
+
+//transform x into usable int
+switch (x)
+{
+  case 'a' : 
+  case 'A' : i = 0;
+    break;
+  case 'b' : 
+  case 'B' : i = 1;
+    break;
+  case 'c' : 
+  case 'C' : i = 2;
+    break;
+  case 'd' : 
+  case 'D' : i = 3;
+    break;
+  case 'e' : 
+  case 'E' : i = 4;
+    break;
+  case 'f' : 
+  case 'F' : i = 5;
+    break;
+  case 'g' : 
+  case 'G' : i = 6;
+    break;
+  case 'h' : 
+  case 'H' : i = 7;
+    break;
+}
+//transform y into usable int j
+switch (y)
+{  
+  case 1: j = 7;
+    break;
+  case 2: j = 6;
+    break;
+  case 3: j = 5;
+    break;
+  case 4: j = 4;
+    break;
+  case 5: j = 3;
+    break;
+  case 6: j = 2;
+    break;
+  case 7: j = 1;
+    break;
+  case 8: j = 0;
+    break;
+}
