@@ -14,10 +14,7 @@ class chess_board{
     
     // The class also keeps track of all moves. In [my] chess notation moves are 4 char long
     // data needs to be added as moves are made, so I use vectors.
-        /*
-        I think here is where i'll want to look into "friend" classes, functions and things 
-        because storing this data in the same class as chess_board seems awkward
-        */
+
 
     char board[8][8];
   
